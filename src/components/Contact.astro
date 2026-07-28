@@ -1,0 +1,102 @@
+---
+import { getDict } from "../i18n/utils";
+const t = getDict();
+const links = t.contact.links;
+---
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <p class="eyebrow"><span>{t.contact.fileLabel}</span> <span class="dim">// {t.contact.eyebrow}</span></p>
+
+    <h2 class="cta">
+      {t.contact.ctaLines[0]}<br />{t.contact.ctaLines[1]}<span class="cursor"></span>
+    </h2>
+
+    <ul class="links">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} target={l.href.startsWith('http') ? '_blank' : undefined} rel="noopener">
+            <span class="arrow">↗</span>
+            <span class="glitch" data-text={l.label}>{l.label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <span>© {new Date().getFullYear()} Yamil Issa</span>
+      <span class="status"><span class="status-dot"></span> {t.contact.systemStatus}</span>
+    </div>
+  </footer>
+</section>
+
+<style>
+  .contact {
+    padding: 120px 0 0;
+    border-bottom: none;
+  }
+
+  .cta {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    line-height: 1.25;
+    max-width: 18ch;
+    margin-bottom: 56px;
+  }
+
+  .links {
+    list-style: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .links li {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .links a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 0;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  .links a:hover {
+    color: var(--white);
+  }
+
+  .arrow {
+    color: var(--accent);
+  }
+
+  .foot {
+    margin-top: 80px;
+    padding: 24px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .foot-inner {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--muted-2);
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+</style>

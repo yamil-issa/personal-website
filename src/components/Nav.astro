@@ -1,0 +1,76 @@
+---
+import { getDict } from "../i18n/utils";
+const t = getDict();
+---
+
+<nav class="nav">
+  <a href="#top" class="nav-mark glitch" data-text="Y.ISSA">Y.ISSA</a>
+
+  <div class="nav-status">
+    <span class="status-dot"></span>
+    <span>{t.nav.status}</span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#about">{t.nav.links.about}</a></li>
+    <li><a href="#stack">{t.nav.links.stack}</a></li>
+    <li><a href="#work">{t.nav.links.work}</a></li>
+    <li><a href="#contact">{t.nav.links.contact}</a></li>
+  </ul>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px var(--edge);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, rgba(10,10,10,0.9), transparent);
+  }
+
+  .nav-mark {
+    font-family: var(--font-display);
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    text-transform: none;
+  }
+
+  .nav-status {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--white);
+  }
+
+  @media (min-width: 780px) {
+    .nav-status { display: flex; }
+  }
+
+  @media (max-width: 560px) {
+    .nav-links { gap: 16px; }
+  }
+</style>

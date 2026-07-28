@@ -1,7 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Stack from "../components/Stack.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <Layout>
-	<h1 style="color: white;">Hello</h1>
+  <Nav />
+  <main>
+    <Hero />
+    <About />
+    <Stack />
+    <Projects />
+    <Contact />
+  </main>
 </Layout>

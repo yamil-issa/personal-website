@@ -1,0 +1,280 @@
+---
+import { getDict } from "../i18n/utils";
+const t = getDict();
+---
+
+<section id="top" class="hero">
+  <canvas id="net" class="net"></canvas>
+
+  <div class="wrap hero-inner">
+    <p class="boot" id="boot" aria-hidden="true"></p>
+
+    <h1 class="title">
+      <span id="heroName">Yamil Issa</span><span class="cursor"></span>
+    </h1>
+
+    <p class="role">{t.hero.role} <span class="dim">/</span> {t.hero.roleSub}</p>
+
+    <p class="pitch">{t.hero.pitch}</p>
+
+    <div class="actions">
+      <a href="#work" class="btn">{t.hero.ctaWork}</a>
+      <a href="#contact" class="btn ghost">{t.hero.ctaContact}</a>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span>{t.hero.scroll}</span>
+    <span class="line"></span>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .net {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.55;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    padding-top: 90px;
+    padding-bottom: 90px;
+  }
+
+  .boot {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    margin-bottom: 22px;
+    min-height: 1.4em;
+    white-space: pre-wrap;
+  }
+
+  .boot .accent { color: var(--accent); }
+
+  .title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.6rem, 8vw, 5.2rem);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+  }
+
+  .role {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 18px;
+  }
+
+  .role .dim { color: var(--muted); }
+
+  .pitch {
+    max-width: 46ch;
+    color: var(--muted);
+    margin-top: 26px;
+    font-size: 15.5px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 42px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    border: 1px solid var(--white);
+    color: var(--black);
+    background: var(--white);
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .btn.ghost {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--border);
+  }
+
+  .btn.ghost:hover {
+    background: transparent;
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: var(--edge);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+
+  .scroll-hint .line {
+    width: 32px;
+    height: 1px;
+    background: var(--muted-2);
+  }
+
+  @media (max-width: 560px) {
+    .scroll-hint { display: none; }
+  }
+</style>
+
+<script define:vars={{ bootLines: t.hero.boot }}>
+  const bootEl = document.getElementById('boot');
+  const nameEl = document.getElementById('heroName');
+  const lines = bootLines;
+  const fullName = nameEl ? nameEl.textContent || '' : '';
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function typeName() {
+    if (!nameEl) return;
+    let i = 0;
+
+    function step() {
+      nameEl.textContent = fullName.slice(0, i);
+      i++;
+      if (i <= fullName.length) setTimeout(step, 22 + Math.random() * 18);
+    }
+    step();
+  }
+
+  if (bootEl) {
+    if (reduceMotion) {
+      bootEl.textContent = lines.join('\n');
+    } else {
+      if (nameEl) nameEl.textContent = ''; // hide it until the type-in below
+
+      let lineIndex = 0;
+      let charIndex = 0;
+      let current = '';
+
+      function typeStep() {
+        if (lineIndex >= lines.length) {
+          setTimeout(typeName, 160);
+          return;
+        }
+        const line = lines[lineIndex];
+
+        if (charIndex <= line.length) {
+          current = lines.slice(0, lineIndex).join('\n') +
+            (lineIndex > 0 ? '\n' : '') +
+            line.slice(0, charIndex);
+          bootEl.textContent = current;
+          charIndex++;
+          setTimeout(typeStep, 10 + Math.random() * 15);
+        } else {
+          lineIndex++;
+          charIndex = 0;
+          setTimeout(typeStep, 120);
+        }
+      }
+      typeStep();
+    }
+  }
+
+  // Ambient node network
+  const canvas = document.getElementById('net');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width = 0, height = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    let nodes = [];
+
+    function resize() {
+      if (!canvas) return;
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function initNodes() {
+      const count = Math.max(18, Math.floor((width * height) / 60000));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+      }));
+    }
+
+    resize();
+    initNodes();
+    window.addEventListener('resize', () => { resize(); initNodes(); });
+
+    function frame() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, width, height);
+
+      for (const n of nodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > width) n.vx *= -1;
+        if (n.y < 0 || n.y > height) n.vy *= -1;
+      }
+
+      const maxDist = 150;
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = a.x - b.x, dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            ctx.strokeStyle = `rgba(168, 191, 204, ${0.14 * (1 - dist / maxDist)})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (const n of nodes) {
+        ctx.fillStyle = 'rgba(168, 191, 204, 0.5)';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 1.3, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      if (!reduceMotion) requestAnimationFrame(frame);
+    }
+
+    frame();
+  }
+</script>
