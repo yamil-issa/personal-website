@@ -17,20 +17,22 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - name: Set up SSH
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+
+      - name: Add server to known_hosts
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy dist/ via rsync
         run: |
           rsync -avz --delete \
-            -e "ssh -i ~/.ssh/id_ed25519" \
             dist/ ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/dist/
 
       - name: Fix permissions for Caddy
         run: |
-          ssh -i ~/.ssh/id_ed25519 ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
+          ssh ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }} \
             "chmod -R o+rX ${{ secrets.DEPLOY_PATH }}/dist"
