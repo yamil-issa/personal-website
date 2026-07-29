@@ -198,3 +198,7 @@ section {
 @media (max-width: 640px) {
   :root { --container: 100%; }
 }
+
+body.nav-open {
+  overflow: hidden;
+}

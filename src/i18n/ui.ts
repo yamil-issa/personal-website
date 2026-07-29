@@ -38,7 +38,7 @@ export const ui = {
       role: 'Software Engineer',
       roleSub: 'TypeScript · PHP · Rust',
       pitch:
-        "A sofware engineert committed to designing reliable solutions tailored to business needs, with a strong focus on the quality and maintainability of applications. Based in Villejuif, available for freelance work across the Paris region.",
+        "A software engineer committed to designing reliable solutions tailored to business needs, with a strong focus on the quality and maintainability of applications. Based in Villejuif, available for freelance work across the Paris region.",
       ctaWork: 'view my work',
       ctaContact: 'get in touch',
       scroll: 'scroll',
@@ -184,7 +184,7 @@ export const ui = {
       items: [
         {
           id: '01',
-          name: 'Kirby Samurai ',
+          name: 'Kirby Samurai',
           status: 'deployé',
           description:
             "Duel de réflexes en temps réel jouable en Discord Activity. Rendu Canvas en TypeScript vanilla côté client, protocole binaire maison au-dessus de WebSockets natifs côté serveur (Bun).",
