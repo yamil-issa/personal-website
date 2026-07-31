@@ -1,9 +1,4 @@
 // Central translation dictionary.
-//
-// The site runs fully in English for now. Every string the components
-// render lives here instead of inline in the markup, so adding the
-// language switch later is just: pick `lang` from the URL (see utils.ts)
-// instead of hardcoding "en", and add a toggle in <Nav />.
 
 export const languages = {
   en: 'English',
@@ -38,7 +33,7 @@ export const ui = {
       role: 'Software Engineer',
       roleSub: 'TypeScript · PHP · Rust',
       pitch:
-        "A software engineer committed to designing reliable solutions tailored to business needs, with a strong focus on the quality and maintainability of applications. Based in Villejuif, available for freelance work across the Paris region.",
+        "A software engineer committed to designing reliable solutions tailored to business needs, with a strong focus on the quality and maintainability of applications. Based in Paris, available for freelance work across the Paris region.",
       ctaWork: 'view my work',
       ctaContact: 'get in touch',
       scroll: 'scroll',
@@ -46,9 +41,9 @@ export const ui = {
     about: {
       fileLabel: 'file_01',
       eyebrow: 'about',
-      lead: "Five years spent shipping the unglamorous work that keeps a product standing: multitenant architecture, internal tooling, APIs that hold up under real traffic.",
+      lead: "Five years turning ambitious specs into things that actually ship: multitenant architecture, internal tooling, APIs that hold up under real traffic.",
       body: [
-        "I'm Yamil, a software engineer based in Villejuif. Over five years at Leaneous, I finalized and shipped the multitenant architecture behind an online art valuation platform, fixing every bug tied to the migration. I also built a NestJS API serving a 3,000+ reference product catalog, and automated supplier invoicing and lead qualification, cutting processing time by 70% and lifting qualification speed and quality by 80%.",
+        "I'm Yamil, a software engineer based in Paris. Over five years at Leaneous, I designed WordPress and Shopify sites for several clients, contributed to the front-end of Leaneous's own site in Vue.js (building out components and working across the UI), and improved the UI/UX of a React Native app, cutting its API latency by 25%. On the backend, I finalized and shipped the multitenant architecture behind an online art valuation platform, fixing every bug tied to the migration, built a NestJS API serving a 3,000+ reference product catalog, and automated supplier invoicing and lead qualification, cutting processing time by 70% and lifting qualification speed and quality by 80%.",
         "These days I work freelance, open to missions and full-time roles across the Paris region. Native French, professional English (C1).",
       ],
     },
@@ -60,7 +55,7 @@ export const ui = {
         { label: 'frontend', items: ['React', 'Next.js', 'Vue.js'] },
         { label: 'backend', items: ['Node.js / Express', 'NestJS', 'Symfony', 'GraphQL'] },
         { label: 'mobile', items: ['React Native', 'Flutter'] },
-        { label: 'data', items: ['MySQL', 'MongoDB', 'Firebase'] },
+        { label: 'data', items: ['MySQL', 'MongoDB', 'PostgreSQL', 'Firebase'] },
         { label: 'infra / tooling', items: ['Docker', 'Git', 'GitLab CI/CD', 'Postman', 'Render'] },
       ],
     },
@@ -97,6 +92,15 @@ export const ui = {
         },
         {
           id: '04',
+          name: 'France Estimation',
+          status: 'client work',
+          description:
+            "Finalized and shipped the multitenant architecture for france-estimation.fr, an online art valuation platform built on Symfony,and fixing every bug tied to the migration.",
+          tags: ['Symfony', 'PHP', 'MySQL'],
+          href: null,
+        },
+        {
+          id: '05',
           name: 'Fairfix.fr',
           status: 'client work',
           description:
@@ -105,7 +109,7 @@ export const ui = {
           href: 'https://www.fairfix.fr',
         },
         {
-          id: '05',
+          id: '06',
           name: 'Self-hosted Music Server',
           status: 'personal',
           description:
@@ -160,9 +164,9 @@ export const ui = {
     about: {
       fileLabel: 'file_01',
       eyebrow: 'à propos',
-      lead: "Cinq ans passés sur le travail qui fait tenir un produit debout : architecture multitenant, outillage interne, API qui tiennent sous une vraie charge.",
+      lead: "Cinq ans à transformer des idées ambitieuses en projets qui tournent vraiment. : architecture multitenant, outillage interne, API qui tiennent sous une vraie charge.",
       body: [
-        "Je m'appelle Yamil, ingénieur logiciel basé à Villejuif. En cinq ans chez Leaneous, j'ai finalisé et mis en production l'architecture multitenant d'une plateforme d'estimation d'œuvres d'art en environ deux mois, en corrigeant tous les bugs liés à la migration. J'ai aussi construit une API NestJS exposant un catalogue de plus de 3 000 références, et automatisé la facturation fournisseurs ainsi que la qualification de leads, réduisant le temps de traitement de 70 % et améliorant la vitesse et la qualité de qualification de 80 %.",
+        "Je m'appelle Yamil, ingénieur logiciel basé à Paris. En cinq ans chez Leaneous, j'ai conçu des sites WordPress et Shopify pour plusieurs clients, contribué au front-end du site de Leaneous en Vue.js (développement de composants et travail sur l'interface globale), et amélioré l'UI/UX d'une application React Native, réduisant sa latence API de 25 %. Côté backend, j'ai finalisé et mis en production l'architecture multitenant d'une plateforme d'estimation d'œuvres d'art, en corrigeant tous les bugs liés à la migration, construit une API NestJS exposant un catalogue de plus de 3 000 références, et automatisé la facturation fournisseurs et la qualification de leads, réduisant le temps de traitement de 70 % et améliorant la vitesse et la qualité de qualification de 80 %.",
         "Aujourd'hui je travaille en freelance, ouvert aux missions comme aux postes en CDI sur l'Île-de-France. Français natif, anglais professionnel (C1).",
       ],
     },
@@ -171,10 +175,10 @@ export const ui = {
       eyebrow: 'stack',
       groups: [
         { label: 'langages', items: ['JavaScript / TypeScript', 'PHP', 'Rust'] },
-        { label: 'frontend', items: ['React', 'Next.js', 'Vue.js'] },
+        { label: 'frontend', items: ['React', 'Next.js', 'Vue.js', 'Angular'] },
         { label: 'backend', items: ['Node.js / Express', 'NestJS', 'Symfony', 'GraphQL'] },
         { label: 'mobile', items: ['React Native', 'Flutter'] },
-        { label: 'données', items: ['MySQL', 'MongoDB', 'Firebase'] },
+        { label: 'données', items: ['MySQL', 'MongoDB', 'PostgreSQL', 'Firebase'] },
         { label: 'infra / outils', items: ['Docker', 'Git', 'GitLab CI/CD', 'Postman', 'Render'] },
       ],
     },
@@ -211,6 +215,15 @@ export const ui = {
         },
         {
           id: '04',
+          name: 'France Estimation',
+          status: 'mission client',
+          description:
+            "J'ai finalisé et mis en production l'architecture multitenant de france-estimation.fr, une plateforme en ligne d'estimation d'œuvres d'art développée avec Symfony, et j'ai corrigé tous les bugs liés à la migration.",
+          tags: ['Symfony', 'PHP', 'MySQL'],
+          href: null,
+        },
+        {
+          id: '05',
           name: 'Fairfix.fr',
           status: 'mission client',
           description:
@@ -219,7 +232,7 @@ export const ui = {
           href: 'https://www.fairfix.fr',
         },
         {
-          id: '05',
+          id: '06',
           name: 'Serveur de musique self-hosted',
           status: 'perso',
           description:
