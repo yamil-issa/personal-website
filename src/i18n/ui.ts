@@ -75,11 +75,11 @@ export const ui = {
         {
           id: '02',
           name: 'Messaging Platform',
-          status: 'deployed',
+          status: 'personal',
           description:
             'A real-time messaging platform built entirely in TypeScript: NestJS, GraphQL and Redis on the backend, React on the front. Deployed continuously to Render with Docker Compose.',
           tags: ['TypeScript', 'NestJS', 'GraphQL', 'Redis', 'React', 'Docker'],
-          href: 'https://react-app-latest-4tgy.onrender.com',
+          href: 'https://github.com/yamil-issa/projet-web',
         },
         {
           id: '03',
